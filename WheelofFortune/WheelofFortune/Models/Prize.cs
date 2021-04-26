@@ -4,7 +4,10 @@ using System.Text;
 
 namespace WheelofFortune.Models
 {
-    class Prize
+    public class Prize
     {
+        public string Id { get; set; }
+        public string Text { get; set; }
+        public string Description { get; set; }
     }
 }
