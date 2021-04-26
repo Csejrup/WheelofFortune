@@ -1,5 +1,4 @@
 ﻿using System;
-using WheelofFortune.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,8 +9,8 @@ namespace WheelofFortune
         public App()
         {
             InitializeComponent();
-            DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()
