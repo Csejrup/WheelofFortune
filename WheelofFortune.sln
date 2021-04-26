@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WheelofFortune.Android", "WheelofFortune\WheelofFortune.Android\WheelofFortune.Android.csproj", "{DC0D24FE-AE6B-4823-81CB-EB03C7946F06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WheelofFortune", "WheelofFortune\WheelofFortune\WheelofFortune.csproj", "{B44B2A91-B3D6-4366-A71A-6E48326E9561}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC0D24FE-AE6B-4823-81CB-EB03C7946F06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC0D24FE-AE6B-4823-81CB-EB03C7946F06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC0D24FE-AE6B-4823-81CB-EB03C7946F06}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DC0D24FE-AE6B-4823-81CB-EB03C7946F06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC0D24FE-AE6B-4823-81CB-EB03C7946F06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC0D24FE-AE6B-4823-81CB-EB03C7946F06}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B44B2A91-B3D6-4366-A71A-6E48326E9561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B44B2A91-B3D6-4366-A71A-6E48326E9561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B44B2A91-B3D6-4366-A71A-6E48326E9561}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B44B2A91-B3D6-4366-A71A-6E48326E9561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B44B2A91-B3D6-4366-A71A-6E48326E9561}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B44B2A91-B3D6-4366-A71A-6E48326E9561}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {20C08930-8D93-40DC-A739-0D42B58EC666}
+	EndGlobalSection
+EndGlobal
