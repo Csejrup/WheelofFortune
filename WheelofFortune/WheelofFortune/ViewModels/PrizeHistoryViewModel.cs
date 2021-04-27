@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace WheelofFortune.ViewModels
@@ -8,7 +9,6 @@ namespace WheelofFortune.ViewModels
     {
         public PrizeHistoryViewModel()
         {
-
         }
     }
 }

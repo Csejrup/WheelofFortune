@@ -1,12 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WheelofFortune.Views.WheelPage">
+             x:Class="WheelofFortune.Views.WheelPage"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="---" x:Name="priceBox" HorizontalTextAlignment="Center" TextColor="Green" FontSize="30" Grid.Column="0"/>
+                <Label Text="---" x:Name="angleBox" HorizontalTextAlignment="Center" TextColor="Green" FontSize="30" Grid.Column="1"/>
+            </Grid>
+            <skia:SKCanvasView x:Name="skiaView" PaintSurface="OnCanvasViewPaintSurface" Grid.Row="1" BackgroundColor="Transparent"/>
+            <Button Text="Spin" FontSize="Title" BackgroundColor="DarkGreen" Padding="30,10" Clicked="Button_Clicked" Grid.Row="2" HeightRequest="100"/>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

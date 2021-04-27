@@ -11,7 +11,7 @@ namespace WheelofFortune.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataPrize<Prize> DataStore => DependencyService.Get<IDataPrize<Prize>>();
+        public IDataPrize<Prize> DataPrize => DependencyService.Get<IDataPrize<Prize>>();
 
         bool isBusy = false;
         public bool IsBusy
@@ -32,7 +32,9 @@ namespace WheelofFortune.ViewModels
             Action onChanged = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
+            {
                 return false;
+            }
 
             backingStore = value;
             onChanged?.Invoke();
