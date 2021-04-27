@@ -25,6 +25,7 @@ namespace WheelofFortune.ViewModels
             get => description;
             set => SetProperty(ref description, value);
         }
+        /*
         private string prizeId;
         public string PrizeId
         {
@@ -38,6 +39,7 @@ namespace WheelofFortune.ViewModels
                 LoadPrizeId(value);
             }
         }
+        */
         public string Id { get; set; }
         private bool isSpinning;
         public bool IsSpinning 
@@ -114,6 +116,8 @@ namespace WheelofFortune.ViewModels
         /// Method for loading a price by id.
         /// </summary>
         /// <param name="prizeId"></param>
+        /// 
+        /*
         public async void LoadPrizeId(string prizeId)
         {
             try
@@ -127,7 +131,7 @@ namespace WheelofFortune.ViewModels
             {
                 Debug.WriteLine("Failed to Load Prize");
             }
-        }
+        }*/
         
         /// <summary>
         /// Method for loading data for the wheel

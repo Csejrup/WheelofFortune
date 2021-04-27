@@ -11,22 +11,15 @@ namespace WheelofFortune.Services
     /// <summary>
     /// Class to Mock Data for prize objects
     /// </summary>
-    public class MockDataPrize : IDataPrize<Prize>
+    public class MockDataPrize
     {
         readonly List<Prize> prizes;
 
         public MockDataPrize()
         {
-            prizes = new List<Prize>()
-            {
-                new Prize { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-                new Prize { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-                new Prize { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-                new Prize { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-                new Prize { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Prize { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
-            };
+       
         }
+        /*
         /// <summary>
         /// Async method to add a Prize to the wheel
         /// </summary>
@@ -81,6 +74,6 @@ namespace WheelofFortune.Services
         {
             return await Task.FromResult(prizes);
         }
-
+        */
     }
 }
