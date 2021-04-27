@@ -1,4 +1,5 @@
-﻿using SkiaSharp;
+﻿using Rg.Plugins.Popup.Services;
+using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System;
 using System.Collections.Generic;
@@ -256,10 +257,12 @@ namespace WheelofFortune.Views
 
         private async void GetPrize()
         {
-            string number = vm.Number.ToString();
+            string number = vm.Number?.number.ToString();
 
-            await DisplayAlert("Winner!", "You won the following Prize! Congratulations!: " + number + "yes", "no");
 
+            await PopupNavigation.PushAsync(new PopupTaskView());
+            //await DisplayAlert("Winner!", "You won the following Prize! Congratulations!: " + number + "yes", "no");
+         
         }
         private async void btn_Click_Spinwheel(object sender, EventArgs e)
         {
