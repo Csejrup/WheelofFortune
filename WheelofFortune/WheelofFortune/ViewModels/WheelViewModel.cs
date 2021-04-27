@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using WheelofFortune.Helpers;
 using WheelofFortune.Models;
-
+using Xamarin.Forms;
+using SkiaSharp;
+using SkiaSharp.Views.Forms;
 namespace WheelofFortune.ViewModels
 {
     public class WheelViewModel : BaseViewModel
@@ -90,7 +95,7 @@ namespace WheelofFortune.ViewModels
                 SetProperty(ref invalidPoints, value);
             }
         }
-
+        
         #endregion 
         #region Events
         public event EventHandler DataReady;
@@ -100,8 +105,11 @@ namespace WheelofFortune.ViewModels
         /// </summary>
         public WheelViewModel()
         {
+
             LoadData();
+
         }
+
         /// <summary>
         /// Method for loading a price by id.
         /// </summary>
@@ -120,25 +128,34 @@ namespace WheelofFortune.ViewModels
                 Debug.WriteLine("Failed to Load Prize");
             }
         }
+        
         /// <summary>
         /// Method for loading data for the wheel
         /// </summary>
+        /// 
         private void LoadData()
         {
-            Colors = new List<string>() { "#F25022", "#7FBA00", "#00A4EF", "#FFB900", "#737373", "#F4B400", "#0F9D58", "#737373", "#FFB900", "#00A4EF", "#7FBA00", "#F25022" }; //Microsoft Colors
+            Colors = new List<string>() { "#7D84AA","#484F75", "#292F50" }; //Microsoft Colors
             Wheel = new Wheel
             {
                 Sectors = new List<Sector>()
             };
             //Hardcoded: Future: Can be replaced by an api call to generate a wheel
+            int currentColor = 0;
             for (int i = 0; i < 12; i++)
             {
                 Wheel.Sectors.Add(new Sector()
                 {
-                    Color = Colors[i],
+                    Color = Colors[currentColor],
                     number = 100 * (i + 1)
                 });
 
+                currentColor++;
+
+                if (currentColor == Colors.Count)
+                {
+                    currentColor = 0;
+                }
             }
             ChartData = new List<ChartData>();
             foreach (var sector in Wheel.Sectors)
@@ -156,6 +173,7 @@ namespace WheelofFortune.ViewModels
             }
             DataReady?.Invoke(this, null);
         }
+        
     }
 }
 

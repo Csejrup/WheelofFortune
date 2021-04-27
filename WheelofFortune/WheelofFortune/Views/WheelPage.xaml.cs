@@ -17,84 +17,74 @@ namespace WheelofFortune.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WheelPage : ContentPage
     {
-        protected WheelViewModel viewModel;
+        protected WheelViewModel vm;
         Stopwatch stopwatch = new Stopwatch();
         private readonly Random random = new Random();
-        bool _pageIsActive;
-        float _degrees;
+        bool pageIsActive;
+        float degress;
 
         public WheelPage()
         {
             InitializeComponent();
-            viewModel = new WheelViewModel();
+            vm = new WheelViewModel();
         }
-
-        async Task AnimationLoop(int extension = 0)
+        
+        async Task AnimationLoop(int ex = 0)
         {
-            if (viewModel.IsSpinning)
+            //Check if the wheel is spinning, if so, return
+            if (vm.IsSpinning)
+            {
                 return;
-            viewModel.IsSpinning = true;
-            priceBox.Text = string.Empty;
+            }
+            vm.IsSpinning = true;
             stopwatch.Reset();
             stopwatch.Start();
 
-            double nextDuration = (random.NextDouble() * 10) + 10; //adjust to your taste.
-            if (extension != 0)
-                nextDuration = extension;
+            double nextDuration = (random.NextDouble() * 10) + 8; 
+            if (ex != 0)
+            {
+                nextDuration = ex;
+            }
             else
-                viewModel.RefreshRate = WheelConstants.DefaultRefreshRate;
-            while (_pageIsActive && stopwatch.Elapsed < TimeSpan.FromSeconds(nextDuration))
+            {
+                vm.RefreshRate = WheelConstants.DefaultRefreshRate;
+            }
+            while (pageIsActive && stopwatch.Elapsed < TimeSpan.FromSeconds(nextDuration))
             {
                 skiaView.InvalidateSurface();
-                await Task.Delay(TimeSpan.FromMilliseconds(viewModel.RefreshRate)); //fastest is 1 millisecond. 
-
-                //slowdown
+                await Task.Delay(TimeSpan.FromMilliseconds(vm.RefreshRate)); 
+                //Slow downs the wheel
                 if (stopwatch.Elapsed.TotalSeconds > nextDuration * 3 / 4)
                 {
-                    viewModel.RefreshRate += viewModel.RefreshRate / 20;
-                    if (viewModel.RefreshRate > WheelConstants.DefaultRefreshRate * 25)
-                        viewModel.RefreshRate = WheelConstants.DefaultRefreshRate;
+                    vm.RefreshRate += vm.RefreshRate / 15;
+                    if (vm.RefreshRate > WheelConstants.DefaultRefreshRate * 25)
+                    {
+                        vm.RefreshRate = WheelConstants.DefaultRefreshRate;
+                    }
                 }
-
             }
             stopwatch.Stop();
 
-            //check if the current angle is okay. 
-            int rounder = (int)Math.Round(_degrees + 3.6f, MidpointRounding.AwayFromZero);
-            if (viewModel.InvalidPoints.Contains(rounder))
-            {
-                //spin again for a moment. 
+            int rounder = (int)Math.Round(degress + 3.6f, MidpointRounding.AwayFromZero);
+            if (vm.InvalidPoints.Contains(rounder))
+            { 
                 await Task.Delay(100);
-                viewModel.IsSpinning = false;
+                vm.IsSpinning = false;
                 await AnimationLoop(5);
             }
             else
             {
-                GetWinner();
-                viewModel.IsSpinning = false;
-                //viewModel.EnableHaptic = false;
+                GetPrize();
+                vm.IsSpinning = false;
             }
         }
-        private async void GetWinner()
-        {
-            //show some pop-up or something. 
-            priceBox.Text = viewModel.Number.ToString();
-            string number = viewModel.Number.ToString();
-
-            await DisplayAlert("Winner!","You won the following Prize! Congratulations!: " + number + "yes","no");
-            
-        }
         /// <summary>
-        /// This is triggered whenever the canvas needs to redraw. 
+        /// This method is trigged when the canvas needs to be redrawn 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        private void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
+        private void CanvasSurfacePaint(object sender, SKPaintSurfaceEventArgs args)
         {
-            if (viewModel.ChartData == null)
-                return;
-            if (viewModel.ChartData.Count == 0)
-                return;
 
             SKImageInfo info = args.Info;
             SKSurface surface = args.Surface;
@@ -108,26 +98,21 @@ namespace WheelofFortune.Views
             float radius = Math.Min(info.Width / 2, info.Height / 2) - 2 * WheelConstants.ExplodeOffset;
             SKRect rect = new SKRect(center.X - radius, center.Y - radius,
                                      center.X + radius, center.Y + radius);
-
-            float startAngle = -90; //This is alighed to the marker to make tracking the winning prize easier. 
-
-
-            //for text
+            float startAngle = -90; 
             float xCenter = info.Width / 2;
             float yCenter = info.Height / 2;
 
-            foreach (ChartData item in viewModel.ChartData)
+            foreach (ChartData item in vm.ChartData)
             {
-                float sweepAngle = 360f / viewModel.ChartData.Count;
+                float sweepAngle = 360f / vm.ChartData.Count;
 
                 using (SKPath path = new SKPath())
                 using (SKPaint fillPaint = new SKPaint())
                 using (SKPaint outlinePaint = new SKPaint())
-                using (SKPaint textPaint = new SKPaint())
+                using (SKPaint text = new SKPaint())
                 {
                     path.MoveTo(center);
                     path.ArcTo(rect, startAngle, sweepAngle, false);
-
 
                     path.Close();
 
@@ -139,106 +124,91 @@ namespace WheelofFortune.Views
                     outlinePaint.Color = SKColors.White;
 
                     #region Text Writer
-                    //write text to the screen
-                    textPaint.TextSize = 40;
-                    textPaint.StrokeWidth = 1;
-                    textPaint.Color = SKColors.White;
 
-                    //Adjust text size.
+                    text.TextSize = 40;
+                    text.StrokeWidth = 1;
+                    text.Color = SKColors.White;
+
+                    //Adjusting Text Size by SKReact
                     SKRect textBounds = new SKRect();
-                    textPaint.MeasureText(item.Text, ref textBounds);
+                    text.MeasureText(item.Text, ref textBounds);
                     float yText = yCenter - textBounds.Height / 2 - textBounds.Top;
-
                     #endregion 
-
                     canvas.Save();
-
-                    DrawRotatedWithMatrices(canvas, path, fillPaint, outlinePaint, item, _degrees, (int)center.X, y);
-
-                    //Writing Actual texts
-                    var test_angle = _degrees + (360 / viewModel.ChartData.Count / 2) - (360 / viewModel.ChartData.Count * 2);
-
-                    float sweepAngleText = 360f / viewModel.ChartData.Count;
-                    float startAngleText = sweepAngleText - sweepAngleText / 2;
-                    foreach (ChartData itemer in viewModel.ChartData)
+                    DrawWheel(canvas, path, fillPaint, outlinePaint, item, degress, (int)center.X, y);
+                    float sweepAngleText = 360f / vm.ChartData.Count;
+                    float priceText = sweepAngleText - sweepAngleText / 2;
+                    foreach (ChartData sect in vm.ChartData)
                     {
                         canvas.Save();
-                        canvas.RotateDegrees(startAngleText + _degrees - 90, xCenter, yCenter);
+                        canvas.RotateDegrees(priceText + degress - 90, xCenter, yCenter);
 
-                        if (itemer.Text.Trim().Length > 6)
-                            textPaint.TextSize = 30;
+                        if (sect.Text.Trim().Length > 6)
+                        {
+                            text.TextSize = 30;
+                        }
                         else
-                            textPaint.TextSize = 40;
-                        canvas.DrawText(itemer.Text, xCenter, yText, textPaint);
+                        {
+                            text.TextSize = 40;
+                        }
+                        canvas.DrawText(sect.Text, xCenter, yText, text);
                         canvas.Restore();
-                        test_angle += 360 / viewModel.ChartData.Count;
-
-                        if (test_angle > 360)
-                            test_angle = test_angle - 360;
-
-                        if (startAngleText > 360)
-                            startAngleText = startAngleText - 360;
-                        startAngleText += sweepAngleText;
+                        if (priceText > 360)
+                        {
+                            priceText = priceText - 360;
+                        }
+                        priceText += sweepAngleText;
                     }
                     canvas.Restore();
                 }
-
                 startAngle += sweepAngle;
             }
             #region Marker
-            //draw the Mark
-            using (SKPaint fillMarkCirclePaint = new SKPaint())
-            using (SKPaint fillMarkCirclePaintOuter = new SKPaint())
-            using (SKPaint fillMarkTrianglePaint = new SKPaint())
+            //SKPaint objects for Drawing the Marker
+            using (SKPaint drawMarkCircleInner = new SKPaint())
+            using (SKPaint drawMarkCircleOuter = new SKPaint())
+            using (SKPaint drawMarkTriangle = new SKPaint())
             {
-                fillMarkCirclePaint.Style = SKPaintStyle.StrokeAndFill;
-                fillMarkCirclePaintOuter.Style = SKPaintStyle.StrokeAndFill;
-                fillMarkCirclePaintOuter.Color = Color.FromHex("#FFF180").ToSKColor();
+                drawMarkCircleInner.Style = SKPaintStyle.StrokeAndFill;
+                drawMarkCircleOuter.Style = SKPaintStyle.StrokeAndFill;
+                drawMarkTriangle.Color = Color.FromHex("#ffffff").ToSKColor();
 
-                // Define an array of rainbow colors
                 List<SKColor> colors = new List<SKColor>();
 
-                foreach (var col in viewModel.Colors)
+                foreach (var col in vm.Colors)
                 {
                     colors.Add(Color.FromHex(col).ToSKColor());
                 }
-
                 //draw outer circle
-                canvas.DrawCircle(args.Info.Width / 2, args.Info.Height / 2, 60, fillMarkCirclePaintOuter); //outer
-
+                canvas.DrawCircle(args.Info.Width / 2, args.Info.Height / 2, 60, drawMarkCircleOuter); //outer
                 //draw triangle
-                fillMarkTrianglePaint.Style = SKPaintStyle.StrokeAndFill;
-                fillMarkTrianglePaint.Color = Color.FromHex("#FFF180").ToSKColor();
-                SKPath trianglePath = new SKPath();
-                trianglePath.MoveTo((args.Info.Width / 2) - 55, args.Info.Height / 2);
-                trianglePath.LineTo((args.Info.Width / 2) - 55, args.Info.Height / 2);
-                trianglePath.LineTo((args.Info.Width / 2) + 55, args.Info.Height / 2);
-                trianglePath.LineTo(args.Info.Width / 2, (float)(args.Info.Height / 2.5));
-                trianglePath.Close();
-                canvas.DrawPath(trianglePath, fillMarkTrianglePaint);
-
-
+                drawMarkTriangle.Style = SKPaintStyle.StrokeAndFill;
+                drawMarkTriangle.Color = Color.FromHex("#ffffff").ToSKColor();
+                SKPath markTriangle = new SKPath();
+                markTriangle.MoveTo((args.Info.Width / 2) - 55, args.Info.Height / 2);
+                markTriangle.LineTo((args.Info.Width / 2) - 55, args.Info.Height / 2);
+                markTriangle.LineTo((args.Info.Width / 2) + 55, args.Info.Height / 2);
+                markTriangle.LineTo(args.Info.Width / 2, (float)(args.Info.Height / 2.5));
+                markTriangle.Close();
+                canvas.DrawPath(markTriangle, drawMarkTriangle);
                 //draw inner circle
                 SKPoint circle_center = new SKPoint(info.Rect.MidX, info.Rect.MidY);
-                fillMarkCirclePaint.Shader = SKShader.CreateSweepGradient(circle_center, colors.ToArray());
-                canvas.DrawCircle(args.Info.Width / 2, args.Info.Height / 2, 50, fillMarkCirclePaint); //inner   
+                drawMarkCircleInner.Shader = SKShader.CreateSweepGradient(circle_center, colors.ToArray());
+               // fillMarkCirclePaint.Color = Color.FromHex("#ffffff").ToSKColor();
+                canvas.DrawCircle(args.Info.Width / 2, args.Info.Height / 2, 50, drawMarkCircleInner); //inner   
             }
             #endregion
-
-
             //Get the current prize.
-            float prize_degree = _degrees + (360 / viewModel.ChartData.Count / 2);
+            float prize_degree = degress + (360 / vm.ChartData.Count / 2);
 
-            if (_degrees == 0 || Math.Round(_degrees, MidpointRounding.AwayFromZero) == 360)
-                prize_degree = _degrees;
-
-            angleBox.Text = $"{_degrees}°";
-
-            var segment = ((prize_degree / 360f) * viewModel.ChartData.Count);
+            if (degress == 0 || Math.Round(degress, MidpointRounding.AwayFromZero) == 360)
+            {
+                prize_degree = degress;
+            }
+            var segment = ((prize_degree / 360f) * vm.ChartData.Count);
             var int_segment2 = Math.Round(segment, MidpointRounding.AwayFromZero);
-            var realIndex = viewModel.ChartData.Count == viewModel.ChartData.Count - (int)int_segment2 ? 0 : viewModel.ChartData.Count - (int)int_segment2;
-            viewModel.Number = viewModel.ChartData[realIndex].Sector; //add back
-            priceBox.Text = viewModel.Number?.ToString();
+            var realIndex = vm.ChartData.Count == vm.ChartData.Count - (int)int_segment2 ? 0 : vm.ChartData.Count - (int)int_segment2;
+            vm.Number = vm.ChartData[realIndex].Sector; //add back
            
             IncrementDegrees();
 
@@ -246,14 +216,26 @@ namespace WheelofFortune.Views
       
         private void IncrementDegrees()
         {
-            if (_degrees >= 360)
+            if (degress >= 360)
             {
-                // _degrees = 0;
-                _degrees = _degrees - 360;
+                degress = degress - 360;
             }
-            _degrees += 3.6f;
+            degress += 3.6f;
         }
-        void DrawRotatedWithMatrices(SKCanvas canvas, SKPath path, SKPaint fill, SKPaint outline, ChartData item, float degrees, int cx, int cy)
+
+        /// <summary>
+        /// Method that rotates the outer wheel parts 
+        /// </summary>
+        /// <param name="canvas"></param>
+        /// <param name="path"></param>
+        /// <param name="fill"></param>
+        /// <param name="outline"></param>
+        /// <param name="item"></param>
+        /// <param name="degrees"></param>
+        /// <param name="cx"></param>
+        /// <param name="cy"></param>
+        
+        void DrawWheel(SKCanvas canvas, SKPath path, SKPaint fill, SKPaint outline, ChartData item, float degrees, int cx, int cy)
         {
             var identity = SKMatrix.CreateIdentity();
             var translate = SKMatrix.CreateTranslation(-cx, -cy);
@@ -272,12 +254,19 @@ namespace WheelofFortune.Views
             canvas.DrawPath(path, outline);
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private async void GetPrize()
+        {
+            string number = vm.Number.ToString();
+
+            await DisplayAlert("Winner!", "You won the following Prize! Congratulations!: " + number + "yes", "no");
+
+        }
+        private async void btn_Click_Spinwheel(object sender, EventArgs e)
         {
             //General.DoHaptic(HapticFeedbackType.LongPress);
-            _pageIsActive = true;
+            pageIsActive = true;
             await AnimationLoop();
         }
-
+        
     }
 }
