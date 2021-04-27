@@ -11,7 +11,7 @@ Technical Specifications
 ----------------------------------
 TargetFramework netstandard 2.0
 
-Android compatiable with Android 11.0(R) and previous versions
+Android compatible with Android 11.0(R) and previous versions
 
 Nuget Packages for both Projects:
 SkiaSharp (2.80.2)
