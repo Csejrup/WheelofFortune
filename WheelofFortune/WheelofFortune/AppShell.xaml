@@ -21,9 +21,9 @@
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
-
+    
     <TabBar>
-        <ShellContent Title="Wheel of Fortune" Icon="wheel.png"  ContentTemplate="{DataTemplate local:WheelPage}" />
+        <ShellContent Title="Wheel of Fortune" Icon="wheeel.png"  ContentTemplate="{DataTemplate local:WheelPage}" />
         <ShellContent Title="Prize History" Icon="prizehistory.png" ContentTemplate="{DataTemplate local:PrizeHistoryPage}" />
     </TabBar>
 </Shell>

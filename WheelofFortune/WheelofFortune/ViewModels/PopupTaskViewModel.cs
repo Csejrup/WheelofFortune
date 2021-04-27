@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,8 @@ namespace WheelofFortune.ViewModels
     public class PopupTaskViewModel : BaseViewModel
     {
         #region Properties
-        private Sector number;
-        public Sector Number
+        private string number;
+        public string Number
         {
             get => number; set
             {
@@ -25,20 +26,24 @@ namespace WheelofFortune.ViewModels
         public ICommand ClaimPrizeCommand { get; set; }
         #endregion
 
-        public PopupTaskViewModel()
+        public PopupTaskViewModel(string Number)
         {
+            this.number = Number;
             ClaimPrizeCommand = new Command(async () => await ClaimPrize());
         }
         /// <summary>
-        /// Async Method for claiming a prize (number) from the wheel of fortune
+        /// Async Method for Claíming the points 
+        /// and put it into SQLite Database
         /// </summary>
         /// <returns></returns>
        public async Task ClaimPrize()
         {
             try
             {
-                string number = Number?.number.ToString();
+                
                 Console.WriteLine(number);
+
+                await PopupNavigation.Instance.PopAsync();
             }
             catch(Exception ex)
             {

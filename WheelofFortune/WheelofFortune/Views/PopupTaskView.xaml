@@ -27,7 +27,7 @@
 
         BackgroundColor="#292F50">
         <Label Text="You won"/>
-        <Label Text="400"/>
+        <Label Text="{Binding Number}"/>
         <Button Command="{Binding ClaimPrizeCommand}" Text="CLAIM" TextColor="White" BackgroundColor="#27BD0F" FontSize="20" CornerRadius="10"
                />
     </StackLayout>

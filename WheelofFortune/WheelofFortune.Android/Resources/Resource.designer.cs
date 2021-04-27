@@ -25,6 +25,7 @@ namespace WheelofFortune.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::NGraphics.Android.Custom.Resource.String.library_name = global::WheelofFortune.Droid.Resource.String.library_name;
 			global::Rg.Plugins.Popup.Resource.Animation.abc_fade_in = global::WheelofFortune.Droid.Resource.Animation.abc_fade_in;
 			global::Rg.Plugins.Popup.Resource.Animation.abc_fade_out = global::WheelofFortune.Droid.Resource.Animation.abc_fade_out;
 			global::Rg.Plugins.Popup.Resource.Animation.abc_grow_fade_in_from_bottom = global::WheelofFortune.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
@@ -13983,7 +13984,10 @@ namespace WheelofFortune.Droid
 			public const int tooltip_frame_light = 2131165312;
 			
 			// aapt resource value: 0x7F070081
-			public const int wheel = 2131165313;
+			public const int wheeel = 2131165313;
+			
+			// aapt resource value: 0x7F070082
+			public const int wheel = 2131165314;
 			
 			static Drawable()
 			{
@@ -15237,31 +15241,34 @@ namespace WheelofFortune.Droid
 			public const int hide_bottom_view_on_scroll_behavior = 2131558437;
 			
 			// aapt resource value: 0x7F0D0026
-			public const int mtrl_chip_close_icon_content_description = 2131558438;
+			public const int library_name = 2131558438;
 			
 			// aapt resource value: 0x7F0D0027
-			public const int overflow_tab_title = 2131558439;
+			public const int mtrl_chip_close_icon_content_description = 2131558439;
 			
 			// aapt resource value: 0x7F0D0028
-			public const int password_toggle_content_description = 2131558440;
+			public const int overflow_tab_title = 2131558440;
 			
 			// aapt resource value: 0x7F0D0029
-			public const int path_password_eye = 2131558441;
+			public const int password_toggle_content_description = 2131558441;
 			
 			// aapt resource value: 0x7F0D002A
-			public const int path_password_eye_mask_strike_through = 2131558442;
+			public const int path_password_eye = 2131558442;
 			
 			// aapt resource value: 0x7F0D002B
-			public const int path_password_eye_mask_visible = 2131558443;
+			public const int path_password_eye_mask_strike_through = 2131558443;
 			
 			// aapt resource value: 0x7F0D002C
-			public const int path_password_strike_through = 2131558444;
+			public const int path_password_eye_mask_visible = 2131558444;
 			
 			// aapt resource value: 0x7F0D002D
-			public const int search_menu_title = 2131558445;
+			public const int path_password_strike_through = 2131558445;
 			
 			// aapt resource value: 0x7F0D002E
-			public const int status_bar_notification_info_overflow = 2131558446;
+			public const int search_menu_title = 2131558446;
+			
+			// aapt resource value: 0x7F0D002F
+			public const int status_bar_notification_info_overflow = 2131558447;
 			
 			static String()
 			{

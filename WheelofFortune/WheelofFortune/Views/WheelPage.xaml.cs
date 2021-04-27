@@ -260,7 +260,7 @@ namespace WheelofFortune.Views
             string number = vm.Number?.number.ToString();
 
 
-            await PopupNavigation.PushAsync(new PopupTaskView());
+            await PopupNavigation.PushAsync(new PopupTaskView(number));
             //await DisplayAlert("Winner!", "You won the following Prize! Congratulations!: " + number + "yes", "no");
          
         }
