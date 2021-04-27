@@ -1,12 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WheelofFortune.Views.WheelPage">
+             x:Class="WheelofFortune.Views.WheelPage"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:model="clr-namespace:WheelofFortune.ViewModels">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+
+        <Grid BackgroundColor="#292F50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="TRY YOUR LUCK" TextColor="White"  Grid.Column="1" Grid.Row="2" FontSize="Title"/>
+            </Grid>
+            <skia:SKCanvasView x:Name="skiaView" PaintSurface="CanvasSurfacePaint" Grid.Row="1" BackgroundColor="Transparent"/>
+            <Button Clicked="btn_Click_Spinwheel"  Text="Spin" FontSize="Medium" BackgroundColor="#484F75" Padding="30,10" Grid.Row="2" HeightRequest="75" />
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

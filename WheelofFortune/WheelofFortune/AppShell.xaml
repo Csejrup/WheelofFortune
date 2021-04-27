@@ -8,7 +8,7 @@
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.ForegroundColor" Value="#292F50" />
                 <Setter Property="Shell.TitleColor" Value="White" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
@@ -21,9 +21,9 @@
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
-
+    
     <TabBar>
-        <ShellContent Title="Wheel of Fortune" Icon="wheel.png"  ContentTemplate="{DataTemplate local:WheelPage}" />
+        <ShellContent Title="Wheel of Fortune" Icon="wheeel.png"  ContentTemplate="{DataTemplate local:WheelPage}" />
         <ShellContent Title="Prize History" Icon="prizehistory.png" ContentTemplate="{DataTemplate local:PrizeHistoryPage}" />
     </TabBar>
 </Shell>
