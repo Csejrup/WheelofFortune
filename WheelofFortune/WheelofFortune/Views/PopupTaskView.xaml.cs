@@ -12,10 +12,10 @@ namespace WheelofFortune.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupTaskView
     {
-        public PopupTaskView(string number)
+        public PopupTaskView()
         {
             InitializeComponent();
-            this.BindingContext = new PopupTaskViewModel(number);
+            BindingContext = new PopupTaskViewModel();
         }
 
 

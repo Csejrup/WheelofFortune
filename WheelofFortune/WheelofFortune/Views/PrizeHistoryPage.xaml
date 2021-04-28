@@ -4,9 +4,18 @@
              x:Class="WheelofFortune.Views.PrizeHistoryPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding Prizes}"  HasUnevenRows="True" SeparatorColor="Gray">
+                <!--<ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell ImageSource="{Binding ProfileImage}" Text="{Binding FullName}" Detail="{Binding Phone}" DetailColor="Black" TextColor="Red">
+                            <ImageCell.ContextActions>
+                                <MenuItem Text="Call" IsDestructive="true" Command="{Binding Source={x:Reference contactsPage}, Path=ViewModel.CallContactCommand}" CommandParameter="{Binding .}" />
+                                <MenuItem Text="Delete" IsDestructive="true" Command="{Binding Source={x:Reference contactsPage}, Path=ViewModel.DeleteContactCommand}" CommandParameter="{Binding .}" />
+                            </ImageCell.ContextActions>
+                        </ImageCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate> -->
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

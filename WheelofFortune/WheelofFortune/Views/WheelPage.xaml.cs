@@ -19,6 +19,7 @@ namespace WheelofFortune.Views
     public partial class WheelPage : ContentPage
     {
         protected WheelViewModel vm;
+        protected PrizeViewModel pvm;
         Stopwatch stopwatch = new Stopwatch();
         private readonly Random random = new Random();
         bool pageIsActive;
@@ -28,8 +29,9 @@ namespace WheelofFortune.Views
         {
             InitializeComponent();
             vm = new WheelViewModel();
+            pvm = new PrizeViewModel();
         }
-        
+        #region Animation
         async Task AnimationLoop(int ex = 0)
         {
             //Check if the wheel is spinning, if so, return
@@ -79,6 +81,8 @@ namespace WheelofFortune.Views
                 vm.IsSpinning = false;
             }
         }
+        #endregion
+        #region Draw Wheel
         /// <summary>
         /// This method is trigged when the canvas needs to be redrawn 
         /// </summary>
@@ -254,13 +258,13 @@ namespace WheelofFortune.Views
             canvas.DrawPath(path, fill);
             canvas.DrawPath(path, outline);
         }
-
+        #endregion
         private async void GetPrize()
         {
-            string number = vm.Number?.number.ToString();
 
+            pvm.Number = vm.Number?.number.ToString();
 
-            await PopupNavigation.PushAsync(new PopupTaskView(number));
+            await PopupNavigation.PushAsync(new PopupTaskView());
             //await DisplayAlert("Winner!", "You won the following Prize! Congratulations!: " + number + "yes", "no");
          
         }

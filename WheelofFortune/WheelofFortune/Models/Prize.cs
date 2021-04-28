@@ -11,8 +11,8 @@ namespace WheelofFortune.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string number { get; set; }
-        public DateTime date { get; set; }
+        public string Number { get; set; }
+        public DateTime Date { get; set; }
 
 
     }
