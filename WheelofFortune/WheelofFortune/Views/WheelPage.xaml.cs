@@ -1,17 +1,17 @@
-﻿using Rg.Plugins.Popup.Services;
-using SkiaSharp;
+﻿using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using WheelofFortune.Helpers;
 using WheelofFortune.Models;
 using WheelofFortune.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Contracts;
+using Rg.Plugins.Popup.Services;
 
 namespace WheelofFortune.Views
 {
@@ -19,8 +19,7 @@ namespace WheelofFortune.Views
     public partial class WheelPage : ContentPage
     {
         protected WheelViewModel vm;
-        protected PrizeViewModel pvm;
-        Stopwatch stopwatch = new Stopwatch();
+        readonly Stopwatch stopwatch = new Stopwatch();
         private readonly Random random = new Random();
         bool pageIsActive;
         float degress;
@@ -29,10 +28,9 @@ namespace WheelofFortune.Views
         {
             InitializeComponent();
             vm = new WheelViewModel();
-            pvm = new PrizeViewModel();
         }
         #region Animation
-        async Task AnimationLoop(int ex = 0)
+        public async Task AnimationLoop(int ex = 0)
         {
             //Check if the wheel is spinning, if so, return
             if (vm.IsSpinning)
@@ -52,8 +50,10 @@ namespace WheelofFortune.Views
             {
                 vm.RefreshRate = WheelConstants.DefaultRefreshRate;
             }
+            //Creates the Spinning Animations
             while (pageIsActive && stopwatch.Elapsed < TimeSpan.FromSeconds(nextDuration))
             {
+                //SKCanvasView (skiaView)
                 skiaView.InvalidateSurface();
                 await Task.Delay(TimeSpan.FromMilliseconds(vm.RefreshRate)); 
                 //Slow downs the wheel
@@ -160,7 +160,7 @@ namespace WheelofFortune.Views
                         canvas.Restore();
                         if (priceText > 360)
                         {
-                            priceText = priceText - 360;
+                            priceText -= 360;
                         }
                         priceText += sweepAngleText;
                     }
@@ -199,7 +199,7 @@ namespace WheelofFortune.Views
                 //draw inner circle
                 SKPoint circle_center = new SKPoint(info.Rect.MidX, info.Rect.MidY);
                 drawMarkCircleInner.Shader = SKShader.CreateSweepGradient(circle_center, colors.ToArray());
-               // fillMarkCirclePaint.Color = Color.FromHex("#ffffff").ToSKColor();
+          
                 canvas.DrawCircle(args.Info.Width / 2, args.Info.Height / 2, 50, drawMarkCircleInner); //inner   
             }
             #endregion
@@ -223,7 +223,7 @@ namespace WheelofFortune.Views
         {
             if (degress >= 360)
             {
-                degress = degress - 360;
+                degress -= 360;
             }
             degress += 3.6f;
         }
@@ -261,19 +261,18 @@ namespace WheelofFortune.Views
         #endregion
         private async void GetPrize()
         {
+            
+            string number = vm.Number?.number.ToString();
 
-            pvm.Number = vm.Number?.number.ToString();
-
-            await PopupNavigation.PushAsync(new PopupTaskView());
-            //await DisplayAlert("Winner!", "You won the following Prize! Congratulations!: " + number + "yes", "no");
-         
+            await PopupNavigation.Instance.PushAsync(new PopupTaskView(number), true);
+           
         }
+     
         private async void btn_Click_Spinwheel(object sender, EventArgs e)
         {
             //General.DoHaptic(HapticFeedbackType.LongPress);
             pageIsActive = true;
             await AnimationLoop();
         }
-        
     }
 }

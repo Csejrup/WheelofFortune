@@ -3,6 +3,7 @@ using System;
 using WheelofFortune.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
 namespace WheelofFortune
 {
     public partial class App : Application

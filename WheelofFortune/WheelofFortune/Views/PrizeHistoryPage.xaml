@@ -1,20 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WheelofFortune.Views.PrizeHistoryPage">
+             x:Class="WheelofFortune.Views.PrizeHistoryPage"
+             xmlns:viewmodels="clr-namespace:WheelofFortune.ViewModels"
+             xmlns:model="clr-namespace:WheelofFortune.Models;assembly=WheelofFortune">
+    <!--Databinding to ViewModel-->
+    <ContentPage.BindingContext>
+        <viewmodels:PrizeHistoryViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Prizes}"  HasUnevenRows="True" SeparatorColor="Gray">
-                <!--<ListView.ItemTemplate>
+            <ListView x:Name="PrizeList" ItemsSource="{Binding Prizes}">
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ImageCell ImageSource="{Binding ProfileImage}" Text="{Binding FullName}" Detail="{Binding Phone}" DetailColor="Black" TextColor="Red">
-                            <ImageCell.ContextActions>
-                                <MenuItem Text="Call" IsDestructive="true" Command="{Binding Source={x:Reference contactsPage}, Path=ViewModel.CallContactCommand}" CommandParameter="{Binding .}" />
-                                <MenuItem Text="Delete" IsDestructive="true" Command="{Binding Source={x:Reference contactsPage}, Path=ViewModel.DeleteContactCommand}" CommandParameter="{Binding .}" />
-                            </ImageCell.ContextActions>
-                        </ImageCell>
+                        <TextCell Text="{Binding Points}"/>
+                        
                     </DataTemplate>
-                </ListView.ItemTemplate> -->
+                </ListView.ItemTemplate>
+                <ListView.Header>
+                    <StackLayout Orientation="Horizontal">
+                        <Label HorizontalOptions="Center" Text="Your Prize History"/>
+                    </StackLayout>
+                </ListView.Header>
             </ListView>
         </StackLayout>
     </ContentPage.Content>

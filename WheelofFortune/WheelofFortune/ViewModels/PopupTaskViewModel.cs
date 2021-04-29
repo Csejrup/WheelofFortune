@@ -1,76 +1,63 @@
 ﻿using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using WheelofFortune.Interfaces;
-using WheelofFortune.Models;
+
 using Xamarin.Forms;
+using WheelofFortune.Services;
 
 namespace WheelofFortune.ViewModels
 {
     public class PopupTaskViewModel : BaseViewModel
     {
         #region Properties
-        private string number;
-        public string Number
+        public int Id { get; set; }
+
+        int points;
+        public int Points
         {
-            get => number; set
+            get => points; set
             {
-                SetProperty(ref number, value);
+                SetProperty(ref points, value);
             }
         }
-        #endregion
-        private Prize prize;
-        public Prize Prize
+        DateTime datetime;
+        public DateTime Datetime
         {
-            get { return prize; }
-            set { prize = value; OnPropertyChanged(); }
+            get => datetime; set
+            {
+                SetProperty(ref datetime, value);
+            }
         }
 
-        private PrizeViewModel _viewModel;
-        private IPrizeData _prizeData;
-        #region Commands
-        public ICommand AddPrizeCommand { get; private set; }
-        
         #endregion
-        public PopupTaskViewModel(IPrizeData prizeData, PrizeViewModel viewModel)
+     
+    
+
+        #region Commands
+        public ICommand AddPointsCommand { get; private set; }
+
+        #endregion
+        //private PointsDataAccess _pointsDataAccess;
+        public PopupTaskViewModel(string number)
         {
-            _viewModel = viewModel;
-            _prizeData = prizeData;
-            AddPrizeCommand = new Command(async () => await AddPrize());
-        }
-        public PopupTaskViewModel()
-        {
+           // this._pointsDataAccess = new PointsDataAccess();
+            this.points = Int32.Parse(number);
+            AddPointsCommand = new Command(async () => await AddPrizePoints());
             
         }
+
         /// <summary>
         /// Async Method for Claíming the points 
-        /// and put it into SQLite Database
+        /// and insert it into SQLite Database
         /// </summary>
         /// <returns></returns>
-        public async Task AddPrize()
+        async Task AddPrizePoints()
         {
-            Prize = new Prize
-            {
-                Id = _viewModel.Id,
-                Number = _viewModel.Number,
-                Date = _viewModel.Datetime
-            };
-
-            //await PopupNavigation.Instance.PopAsync();
             try
             {
-                if(Prize.Id == 0)
-                {
-                    await _prizeData.AddPrize(Prize).ConfigureAwait(false);
-                }
-                else
-                {
-                    await _prizeData.UpdatePrize(Prize).ConfigureAwait(false);
-                }
+                await PrizeService.AddPrize(points, Datetime);
+                
             }
             catch (Exception ex)
             {

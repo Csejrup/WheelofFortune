@@ -9,8 +9,8 @@ namespace WheelofFortune.ViewModels
     {
         public int Id { get; set; }
 
-        private string number;
-        public string Number
+        private int number;
+        public int Number
         {
             get => number; set
             {
@@ -31,7 +31,7 @@ namespace WheelofFortune.ViewModels
         public PrizeViewModel(Prize prize)
         {
             Id = prize.Id;
-            number = prize.Number;
+            number = prize.Points;
             datetime = prize.Date;
         }
 

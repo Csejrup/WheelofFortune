@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WheelofFortune.Interfaces;
 using WheelofFortune.Models;
 
 namespace WheelofFortune.Services

@@ -15,6 +15,7 @@ namespace WheelofFortune.Views
         public PrizeHistoryPage()
         {
             InitializeComponent();
+            this.BindingContext = new PrizeHistoryPage();
         }
     }
 }

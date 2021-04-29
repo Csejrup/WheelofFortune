@@ -9,6 +9,8 @@ using WheelofFortune.Models;
 using Xamarin.Forms;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
+using WheelofFortune.Views;
+
 namespace WheelofFortune.ViewModels
 {
     public class WheelViewModel : BaseViewModel
@@ -77,17 +79,14 @@ namespace WheelofFortune.ViewModels
         #region Events
         public event EventHandler DataReady;
         #endregion
+
         /// <summary>
         /// Constructor
         /// </summary>
         public WheelViewModel()
         {
-
             LoadData();
-
         }
-
-       
         private void LoadData()
         {
             Colors = new List<string>() { "#7D84AA","#484F75", "#292F50" }; //Microsoft Colors

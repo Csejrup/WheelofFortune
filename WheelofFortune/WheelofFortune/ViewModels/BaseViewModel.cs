@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
-using WheelofFortune.Interfaces;
 using WheelofFortune.Models;
 using Xamarin.Forms;
 
@@ -11,7 +10,7 @@ namespace WheelofFortune.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataPrize<Prize> DataPrize => DependencyService.Get<IDataPrize<Prize>>();
+     
 
         bool isBusy = false;
         public bool IsBusy
