@@ -27,7 +27,7 @@
 
         BackgroundColor="#292F50">
         <Label Text="You won"/>
-        <Label Text="{Binding Number}"/>
+        <Label Text="{Binding Points}"/>
         <Button Command="{Binding AddPointsCommand}" Text="CLAIM" TextColor="White" BackgroundColor="#27BD0F" FontSize="20" CornerRadius="10"
                />
     </StackLayout>

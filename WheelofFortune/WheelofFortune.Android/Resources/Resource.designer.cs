@@ -13986,9 +13986,6 @@ namespace WheelofFortune.Droid
 			// aapt resource value: 0x7F070081
 			public const int wheeel = 2131165313;
 			
-			// aapt resource value: 0x7F070082
-			public const int wheel = 2131165314;
-			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

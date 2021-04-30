@@ -7,12 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WheelofFortune.Models;
+using WheelofFortune.Services;
 using Xamarin.Forms;
 
 namespace WheelofFortune.ViewModels
 {
     public class PrizeHistoryViewModel : BaseViewModel
     {
+        public ObservableRangeCollection<Prize> Prize { get; set; }
         ObservableCollection<Prize> prizes = new ObservableCollection<Prize>();
         public ObservableCollection<Prize> Prizes { get { return prizes; } }
 
@@ -20,22 +22,30 @@ namespace WheelofFortune.ViewModels
         public ICommand RefreshCommand { get; private set; }
         #endregion
 
-        public PrizeHistoryViewModel(){
-     
+        public PrizeHistoryViewModel()
+        {
+            Prize = new ObservableRangeCollection<Prize>();
 
             LoadPrizes();
             RefreshCommand = new Command(async () => await Refresh());
         }
 
-        void LoadPrizes()
+        async void LoadPrizes()
         {
-           
-            Prizes.Add(new Prize { Points = 100, Date = DateTime.Now });
-            Prizes.Add(new Prize { Points = 100, Date = DateTime.Now });
-            Prizes.Add(new Prize { Points = 100, Date = DateTime.Now });
-            Prizes.Add(new Prize { Points = 100, Date = DateTime.Now });
-            Prizes.Add(new Prize { Points = 100, Date = DateTime.Now });
+            try
+            {
+                var prizes = await PrizeService.GetPrizes();
+                foreach (var item in prizes)
+                {
+                    Prize.Add(item);
+                }
 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ClaimPrize THREW: {ex.Message}");
+
+            }
         }
        async Task Refresh()
         {
