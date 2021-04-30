@@ -4,25 +4,28 @@
              x:Class="WheelofFortune.Views.PrizeHistoryPage"
              xmlns:viewmodels="clr-namespace:WheelofFortune.ViewModels"
              xmlns:model="clr-namespace:WheelofFortune.Models;assembly=WheelofFortune">
-    <!--Databinding to ViewModel-->
-    <ContentPage.BindingContext>
-        <viewmodels:PrizeHistoryViewModel />
-    </ContentPage.BindingContext>
+   
     <ContentPage.Content>
-        <StackLayout>
-            <ListView x:Name="PrizeList" ItemsSource="{Binding Prizes}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding Points}"/>
-                        
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Header>
-                    <StackLayout Orientation="Horizontal">
-                        <Label HorizontalOptions="Center" Text="Your Prize History"/>
-                    </StackLayout>
-                </ListView.Header>
-            </ListView>
-        </StackLayout>
+        <CollectionView ItemsSource="{Binding Prizes}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="1"
+                               Text="{Binding Points}"/>
+                        <Label Grid.Column="2" 
+                               Text="{Binding Date}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
     </ContentPage.Content>
 </ContentPage>

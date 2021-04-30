@@ -11,7 +11,6 @@ namespace WheelofFortune
         public App()
         {
             InitializeComponent();
-            DependencyService.Register<MockDataPrize>();
             MainPage = new AppShell();
         }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using WheelofFortune.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,7 +15,7 @@ namespace WheelofFortune.Views
         public PrizeHistoryPage()
         {
             InitializeComponent();
-            this.BindingContext = new PrizeHistoryPage();
+            this.BindingContext = new PrizeHistoryViewModel();
         }
     }
 }

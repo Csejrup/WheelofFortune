@@ -31,7 +31,11 @@ namespace WheelofFortune.ViewModels
         {
            
             Prizes.Add(new Prize { Points = 100, Date = DateTime.Now });
-         
+            Prizes.Add(new Prize { Points = 100, Date = DateTime.Now });
+            Prizes.Add(new Prize { Points = 100, Date = DateTime.Now });
+            Prizes.Add(new Prize { Points = 100, Date = DateTime.Now });
+            Prizes.Add(new Prize { Points = 100, Date = DateTime.Now });
+
         }
        async Task Refresh()
         {
