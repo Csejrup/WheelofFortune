@@ -4,28 +4,49 @@
              x:Class="WheelofFortune.Views.PrizeHistoryPage"
              xmlns:viewmodels="clr-namespace:WheelofFortune.ViewModels"
              xmlns:model="clr-namespace:WheelofFortune.Models;assembly=WheelofFortune">
-   
+   <!--PrizeHistoryPage is the page that displays the prizes won, overtime, by the user-->
     <ContentPage.Content>
-        <CollectionView ItemsSource="{Binding Prize}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="1"
-                               Text="{Binding Points}"/>
-                        <Label Grid.Column="2" 
-                               Text="{Binding Date}"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
+        <Grid BackgroundColor="#292F50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Text="Your Prize History" 
+                   TextColor="White" 
+                   FontSize="25" 
+                   Grid.Row="0" 
+                   HorizontalTextAlignment="Center"
+                   />
+            <CollectionView ItemsSource="{Binding Prize, Mode=TwoWay}" Grid.Row="1" Margin="5">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="1"
+                                     VerticalItemSpacing="10"
+                                     HorizontalItemSpacing="10">
 
-        </CollectionView>
+                    </GridItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="12">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Grid.Row="0"
+                               Text="{Binding Points}" TextColor="White" FontSize="17"/>
+                            <Label Grid.Column="1" 
+                                   Grid.Row="0"
+                               Text="{Binding Date}" TextColor="White" FontSize="17"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

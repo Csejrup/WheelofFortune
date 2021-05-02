@@ -5,6 +5,9 @@ using WheelofFortune.Models;
 
 namespace WheelofFortune.ViewModels
 {
+    /// <summary>
+    /// Class - viewmodel - for a prize
+    /// </summary>
     public class PrizeViewModel : BaseViewModel
     {
         public int Id { get; set; }

@@ -1,9 +1,5 @@
 ﻿using MvvmHelpers;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WheelofFortune.Models;
@@ -12,15 +8,15 @@ using Xamarin.Forms;
 
 namespace WheelofFortune.ViewModels
 {
+    /// <summary>
+    /// Class - ViewModel - for the PrizeHistoryPage View
+    /// </summary>
     public class PrizeHistoryViewModel : BaseViewModel
     {
         public ObservableRangeCollection<Prize> Prize { get; set; }
-        ObservableCollection<Prize> prizes = new ObservableCollection<Prize>();
-        public ObservableCollection<Prize> Prizes { get { return prizes; } }
-
-        #region
+        #region Commands
         public ICommand RefreshCommand { get; private set; }
-        #endregion
+        #endregion 
 
         public PrizeHistoryViewModel()
         {
@@ -29,30 +25,33 @@ namespace WheelofFortune.ViewModels
             LoadPrizes();
             RefreshCommand = new Command(async () => await Refresh());
         }
-
-        async void LoadPrizes()
+        /// <summary>
+        /// Async Method for retrieving data from database through PrizeService
+        /// And adding it to generic collection (Prize)
+        /// </summary>
+        /// <returns></returns>
+        private async Task LoadPrizes()
         {
             try
             {
                 var prizes = await PrizeService.GetPrizes();
-                foreach (var item in prizes)
-                {
-                    Prize.Add(item);
-                }
-
+                Prize.AddRange(prizes);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"ClaimPrize THREW: {ex.Message}");
-
             }
         }
-       async Task Refresh()
+        /// <summary>
+        /// Async Method for refreshing the Collection
+        /// </summary>
+        /// <returns></returns>
+       private async Task Refresh()
         {
             IsBusy = true;
             await Task.Delay(200);
 
-            LoadPrizes();
+            await LoadPrizes();
             IsBusy = false;
 
         }

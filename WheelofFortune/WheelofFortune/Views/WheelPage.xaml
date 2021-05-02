@@ -4,8 +4,8 @@
              x:Class="WheelofFortune.Views.WheelPage"
              xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              xmlns:model="clr-namespace:WheelofFortune.ViewModels">
+<!--WheelPage displays the main function of this application in form a fortune wheel which is drawn by SKCanvasView-->
     <ContentPage.Content>
-
         <Grid BackgroundColor="#292F50">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

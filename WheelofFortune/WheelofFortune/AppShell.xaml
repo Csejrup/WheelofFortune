@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:WheelofFortune.Views"
              Title="Wheel of Fortune"
              x:Class="WheelofFortune.AppShell">
+    <!--AppShell shows the main stage of the application (With tabbar)-->
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">

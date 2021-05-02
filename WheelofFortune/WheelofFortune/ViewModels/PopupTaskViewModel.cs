@@ -2,12 +2,14 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
 using Xamarin.Forms;
 using WheelofFortune.Services;
 
 namespace WheelofFortune.ViewModels
 {
+    /// <summary>
+    /// Class - ViewModel - for the PopupTaskView
+    /// </summary>
     public class PopupTaskViewModel : BaseViewModel
     {
         #region Properties
@@ -31,9 +33,6 @@ namespace WheelofFortune.ViewModels
         }
 
         #endregion
-     
-    
-
         #region Commands
         public ICommand AddPointsCommand { get; private set; }
 

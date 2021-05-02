@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using WheelofFortune.Helpers;
 using WheelofFortune.Models;
-using Xamarin.Forms;
-using SkiaSharp;
-using SkiaSharp.Views.Forms;
-using WheelofFortune.Views;
 
 namespace WheelofFortune.ViewModels
 {
+    /// <summary>
+    /// Class - ViewModel - for the WheelPage View. 
+    /// </summary>
     public class WheelViewModel : BaseViewModel
     {
         #region properties
@@ -89,7 +83,7 @@ namespace WheelofFortune.ViewModels
         }
         private void LoadData()
         {
-            Colors = new List<string>() { "#7D84AA","#484F75", "#292F50" }; //Microsoft Colors
+            Colors = new List<string>() { "#7D84AA","#484F75", "#292F50" }; 
             Wheel = new Wheel
             {
                 Sectors = new List<Sector>()

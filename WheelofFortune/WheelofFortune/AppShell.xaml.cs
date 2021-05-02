@@ -15,6 +15,8 @@ namespace WheelofFortune
         public AppShell()
         {
             InitializeComponent();
+
+            //Routing through a tabbar. 
             Routing.RegisterRoute(nameof(WheelPage), typeof(WheelPage));
             Routing.RegisterRoute(nameof(PrizeHistoryPage), typeof(PrizeHistoryPage));
         }

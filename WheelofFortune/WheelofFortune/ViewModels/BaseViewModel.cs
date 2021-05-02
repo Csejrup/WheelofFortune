@@ -8,10 +8,11 @@ using Xamarin.Forms;
 
 namespace WheelofFortune.ViewModels
 {
+    /// <summary>
+    /// The Base Class for all ViewModel that Inherits INotifyPropertyChanged
+    /// </summary>
     public class BaseViewModel : INotifyPropertyChanged
     {
-     
-
         bool isBusy = false;
         public bool IsBusy
         {
