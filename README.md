@@ -12,6 +12,7 @@ To Run the Application
 To be able to test and run the application you must use an android Emulator, example a Pixel 2 Pie 9.0 - API 28 (Android 9.0 - API 28), 
 or connect your own Android to Visual Studio. 
 Follow the microsoft guide on this link if you wish to connect your own Android Phone:
+
 [Set up Device for Development](https://docs.microsoft.com/en-us/xamarin/android/get-started/installation/set-up-device-for-development)
 
 -----------------------------------------
