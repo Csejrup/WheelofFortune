@@ -35,7 +35,7 @@ What could have been included would have been a test focused approach (Think XP)
 Link to Documentation (Report)
 ----------------------------------
 
-(https://docs.google.com/document/d/18tU1W9ROD--ZrSM-N7SD8Ortk4kMmCiPd9nDaHYnbA8/edit?usp=sharing "Link to Google Docs")
+[](https://docs.google.com/document/d/18tU1W9ROD--ZrSM-N7SD8Ortk4kMmCiPd9nDaHYnbA8/edit?usp=sharing "Link to Google Docs")
 
 ----------------------------------
 Technical Specifications
