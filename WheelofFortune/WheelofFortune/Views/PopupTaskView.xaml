@@ -4,7 +4,7 @@
              x:Class="WheelofFortune.Views.PopupTaskView"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup">
-
+<!--PopupTaskView is a popup window (page) that pops up whenver a prize is won-->
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation 
             PositionIn="Center"
@@ -17,19 +17,43 @@
             EasingOut="SinIn"
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
-
-    <StackLayout 
-        VerticalOptions="Center" 
-        HorizontalOptions="Center" 
-        Margin="100"
-        Padding="20"
+    
+    <Frame BackgroundColor="#292F50" CornerRadius="20"
+           WidthRequest="200"
+           HeightRequest="200"
+           VerticalOptions="Center"
+           HorizontalOptions="Center">
+        <Grid  HeightRequest="200" WidthRequest="200" VerticalOptions="Center" HorizontalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Label Text="You won" 
+                   TextColor="White" 
+                   FontSize="20" 
+                   
+                   HorizontalTextAlignment="Center"
+                   FontFamily="SoulMaze"/>
+            <Label Text="{Binding Points, StringFormat='+{0}'}" 
+                   TextColor="White" 
+                   Grid.Row="1" 
+                   FontSize="35"
+                   FontFamily="SoulMaze"
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center"/>
+            <Button Command="{Binding AddPointsCommand}" 
+                    Text="CLAIM" 
+                    TextColor="White" 
+                    BackgroundColor="#27BD0F" 
+                    FontSize="20"
+                    FontFamily="'SoulMaze"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+               Grid.Row="2"/>
+        </Grid>
         
-
-        BackgroundColor="#292F50">
-        <Label Text="You won"/>
-        <Label Text="{Binding Number}"/>
-        <Button Command="{Binding ClaimPrizeCommand}" Text="CLAIM" TextColor="White" BackgroundColor="#27BD0F" FontSize="20" CornerRadius="10"
-               />
-    </StackLayout>
+    </Frame>
+ 
 
 </pages:PopupPage>

@@ -2,24 +2,20 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using WheelofFortune.Interfaces;
-using WheelofFortune.Models;
-using Xamarin.Forms;
 
 namespace WheelofFortune.ViewModels
 {
+    /// <summary>
+    /// The Base Class for all ViewModel that Inherits INotifyPropertyChanged
+    /// </summary>
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataPrize<Prize> DataPrize => DependencyService.Get<IDataPrize<Prize>>();
-
         bool isBusy = false;
         public bool IsBusy
         {
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
         }
-
         string title = string.Empty;
         public string Title
         {

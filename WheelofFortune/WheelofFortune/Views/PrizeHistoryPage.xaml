@@ -1,12 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WheelofFortune.Views.PrizeHistoryPage">
+             x:Class="WheelofFortune.Views.PrizeHistoryPage"
+             xmlns:viewmodels="clr-namespace:WheelofFortune.ViewModels"
+             xmlns:model="clr-namespace:WheelofFortune.Models;assembly=WheelofFortune">
+   <!--PrizeHistoryPage is the page that displays the prizes won, overtime, by the user-->
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid BackgroundColor="#292F50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <Label Text="Your Prize History" 
+                   TextColor="White"
+                   FontFamily="Poppins"
+                   FontSize="24" 
+                   Grid.Row="0" 
+                   
+                   />
+            <Image Source="Bronze.png" Scale="0.5" AnchorX="0.6" AnchorY="0.25"></Image>
+            <Image Source="Silver.png" Scale="0.5" AnchorX="0.75" AnchorY="0.25" ></Image>
+            <Image Source="Gold.png" Scale="0.5" AnchorX="0.9" AnchorY="0.25"></Image>
+            <CollectionView ItemsSource="{Binding Prize, Mode=TwoWay}" Grid.Row="1" Margin="5">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="1"
+                                     VerticalItemSpacing="10"
+                                     HorizontalItemSpacing="10">
+
+                    </GridItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="12">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Grid.Row="0"
+                               Text="{Binding Points, StringFormat='+  {0}'}" 
+                                   TextColor="White" 
+                                   FontSize="17"
+                                   FontFamily="SoulMaze"
+                                   FontAttributes="Bold"/>
+                            <Label Grid.Column="1" 
+                                   Grid.Row="0"
+                                   Text="{Binding Date}" 
+                                   TextColor="White" 
+                                   FontSize="17"/>
+                            <!-- Row Separator -->
+                            <BoxView HeightRequest="1"
+                                    BackgroundColor="#4E546A"
+                                    Grid.ColumnSpan="3"
+                                    Grid.Row="1"
+                                    VerticalOptions="End"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Command="{Binding RefreshCommand}" 
+                    Text="Refresh"
+                    FontFamily="SoulMaze"
+                    FontAttributes="Bold"
+                    CornerRadius="20" 
+                    Grid.Row="2" 
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    WidthRequest="500"
+                    BackgroundColor="#484F75"/>
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

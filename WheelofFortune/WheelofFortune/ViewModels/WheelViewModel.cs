@@ -1,43 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using WheelofFortune.Helpers;
 using WheelofFortune.Models;
-using Xamarin.Forms;
-using SkiaSharp;
-using SkiaSharp.Views.Forms;
+
 namespace WheelofFortune.ViewModels
 {
+    /// <summary>
+    /// Class - ViewModel - for the WheelPage View. 
+    /// </summary>
     public class WheelViewModel : BaseViewModel
     {
         #region properties
-        private string text;
-        public string Text
-        {
-            get => text;
-            set => SetProperty(ref text, value);
-        }
-        private string description;
-        public string Description {
-            get => description;
-            set => SetProperty(ref description, value);
-        }
-        private string prizeId;
-        public string PrizeId
-        {
-            get
-            {
-                return prizeId;
-            }
-            set
-            {
-                prizeId = value;
-                LoadPrizeId(value);
-            }
-        }
+       
         public string Id { get; set; }
         private bool isSpinning;
         public bool IsSpinning 
@@ -100,42 +73,17 @@ namespace WheelofFortune.ViewModels
         #region Events
         public event EventHandler DataReady;
         #endregion
+
         /// <summary>
         /// Constructor
         /// </summary>
         public WheelViewModel()
         {
-
             LoadData();
-
         }
-
-        /// <summary>
-        /// Method for loading a price by id.
-        /// </summary>
-        /// <param name="prizeId"></param>
-        public async void LoadPrizeId(string prizeId)
-        {
-            try
-            {
-                var item = await DataPrize.GetPrizeAsync(prizeId);
-                Id = item.Id;
-                Text = item.Text;
-                Description = item.Description;
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Failed to Load Prize");
-            }
-        }
-        
-        /// <summary>
-        /// Method for loading data for the wheel
-        /// </summary>
-        /// 
         private void LoadData()
         {
-            Colors = new List<string>() { "#7D84AA","#484F75", "#292F50" }; //Microsoft Colors
+            Colors = new List<string>() { "#7D84AA","#484F75", "#292F50" }; 
             Wheel = new Wheel
             {
                 Sectors = new List<Sector>()

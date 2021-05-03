@@ -1,55 +1,70 @@
 ﻿using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using WheelofFortune.Models;
 using Xamarin.Forms;
+using WheelofFortune.Services;
 
 namespace WheelofFortune.ViewModels
 {
+    /// <summary>
+    /// Class - ViewModel - for the PopupTaskView
+    /// </summary>
     public class PopupTaskViewModel : BaseViewModel
     {
         #region Properties
-        private string number;
-        public string Number
+        public int Id { get; set; }
+
+        int points;
+        public int Points
         {
-            get => number; set
+            get => points; set
             {
-                SetProperty(ref number, value);
+                SetProperty(ref points, value);
             }
         }
-        #endregion
-
-        #region Commands
-        public ICommand ClaimPrizeCommand { get; set; }
-        #endregion
-
-        public PopupTaskViewModel(string Number)
+        DateTime datetime;
+        public DateTime Datetime
         {
-            this.number = Number;
-            ClaimPrizeCommand = new Command(async () => await ClaimPrize());
+            get => datetime; set
+            {
+                SetProperty(ref datetime, value);
+            }
+        }
+
+        #endregion
+        #region Commands
+        public ICommand AddPointsCommand { get; private set; }
+
+        #endregion
+        public PopupTaskViewModel(string number)
+        {
+            this.points = Int32.Parse(number);
+            AddPointsCommand = new Command(async () => await AddPrizePoints());
+            
         }
         /// <summary>
         /// Async Method for Claíming the points 
-        /// and put it into SQLite Database
+        /// and insert it into SQLite Database
         /// </summary>
         /// <returns></returns>
-       public async Task ClaimPrize()
+        async Task AddPrizePoints()
         {
             try
             {
+                datetime = DateTime.Now;
+                await PrizeService.AddPrize(points, datetime).ConfigureAwait(false);
                 
-                Console.WriteLine(number);
-
-                await PopupNavigation.Instance.PopAsync();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"ClaimPrize THREW: {ex.Message}");
+                
+            }
+            finally
+            {
+                await PopupNavigation.Instance.PopAsync();
             }
         }
-
     }
 }

@@ -18,7 +18,9 @@ namespace WheelofFortune.Droid
             ToolbarResource = Resource.Layout.Toolbar;
             
             base.OnCreate(savedInstanceState);
+            //Initiates the Popup nuget (The popup page when a prize is won)
             Rg.Plugins.Popup.Popup.Init(this);
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
@@ -29,9 +31,6 @@ namespace WheelofFortune.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        public override void OnBackPressed()
-        {
-            Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
-        }
+      
     }
 }

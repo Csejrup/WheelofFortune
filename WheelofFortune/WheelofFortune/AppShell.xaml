@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:WheelofFortune.Views"
              Title="Wheel of Fortune"
              x:Class="WheelofFortune.AppShell">
+    <!--AppShell shows the main stage of the application (With tabbar)-->
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
@@ -23,7 +24,7 @@
     </Shell.Resources>
     
     <TabBar>
-        <ShellContent Title="Wheel of Fortune" Icon="wheeel.png"  ContentTemplate="{DataTemplate local:WheelPage}" />
-        <ShellContent Title="Prize History" Icon="prizehistory.png" ContentTemplate="{DataTemplate local:PrizeHistoryPage}" />
+        <ShellContent Title="Wheel of Fortune"  Icon="FortuneWheel.png"  ContentTemplate="{DataTemplate local:WheelPage}" />
+        <ShellContent Title="Prize History" Icon="Prizes.png" ContentTemplate="{DataTemplate local:PrizeHistoryPage}" />
     </TabBar>
 </Shell>
