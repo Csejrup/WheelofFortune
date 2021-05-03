@@ -16,8 +16,10 @@ namespace WheelofFortune.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
+            
             base.OnCreate(savedInstanceState);
+            //Initiates the Popup nuget (The popup page when a prize is won)
+            Rg.Plugins.Popup.Popup.Init(this);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
@@ -29,5 +31,6 @@ namespace WheelofFortune.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+      
     }
 }
