@@ -9,8 +9,6 @@ using WheelofFortune.Models;
 using WheelofFortune.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Rg.Plugins.Popup.Extensions;
-using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Services;
 
 namespace WheelofFortune.Views
@@ -77,7 +75,7 @@ namespace WheelofFortune.Views
             }
             else
             {
-                GetPrize();
+                GetPoints();
                 vm.IsSpinning = false;
             }
         }
@@ -129,7 +127,7 @@ namespace WheelofFortune.Views
                     outlinePaint.Color = SKColors.White;
 
                     #region Text Writer
-
+                    //Draws the Numbers on the wheel in each sector. 
                     text.TextSize = 40;
                     text.StrokeWidth = 1;
                     text.Color = SKColors.White;
@@ -204,7 +202,7 @@ namespace WheelofFortune.Views
                 canvas.DrawCircle(args.Info.Width / 2, args.Info.Height / 2, 50, drawMarkCircleInner); //inner   
             }
             #endregion
-            //Get the current prize.
+            //Get the current Point.
             float prize_degree = degress + (360 / vm.ChartData.Count / 2);
 
             if (degress == 0 || Math.Round(degress, MidpointRounding.AwayFromZero) == 360)
@@ -260,7 +258,10 @@ namespace WheelofFortune.Views
             canvas.DrawPath(path, outline);
         }
         #endregion
-        private async void GetPrize()
+        /// <summary>
+        /// Async Method for retrieving the Points and sending it to the popup view. 
+        /// </summary>
+        private async void GetPoints()
         {
             
             string number = vm.Number?.number.ToString();
@@ -268,7 +269,11 @@ namespace WheelofFortune.Views
             await PopupNavigation.Instance.PushAsync(new PopupTaskView(number), true);
            
         }
-     
+        /// <summary>
+        /// Event Action connected to the Spin Button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void btn_Click_Spinwheel(object sender, EventArgs e)
         {
             //General.DoHaptic(HapticFeedbackType.LongPress);

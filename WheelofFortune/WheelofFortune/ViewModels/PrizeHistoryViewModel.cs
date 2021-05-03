@@ -15,9 +15,7 @@ namespace WheelofFortune.ViewModels
     {
         public ObservableRangeCollection<Prize> Prize { get; set; }
 
-        private string plus;
-        public string Plus { get; set; }
-
+        
         #region Commands
         public ICommand RefreshCommand { get; private set; }
         #endregion 

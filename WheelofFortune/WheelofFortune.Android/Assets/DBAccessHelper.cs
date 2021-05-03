@@ -15,7 +15,11 @@ namespace WheelofFortune.Droid.Assets
 {
     public class DBAccessHelper : IDatabase
     {
-       
+       /// <summary>
+       /// Method used by the Android Project to estable DB connection 
+       /// and creates a db file if it does not exist. 
+       /// </summary>
+       /// <returns></returns>
         public SQLiteAsyncConnection GetConnection()
         {
             var dbPath = Path.Combine(FileSystem.AppDataDirectory, "WheelofFortune.db");

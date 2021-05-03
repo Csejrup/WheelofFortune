@@ -1,6 +1,9 @@
 ﻿
 namespace WheelofFortune.Helpers
 {
+    /// <summary>
+    /// Class for Constants used by the Wheel
+    /// </summary>
     public class WheelConstants
     {
         public const string EmptySpaces = "            "; 
