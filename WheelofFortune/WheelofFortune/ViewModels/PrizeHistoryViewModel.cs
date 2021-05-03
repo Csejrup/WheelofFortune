@@ -14,6 +14,10 @@ namespace WheelofFortune.ViewModels
     public class PrizeHistoryViewModel : BaseViewModel
     {
         public ObservableRangeCollection<Prize> Prize { get; set; }
+
+        private string plus;
+        public string Plus { get; set; }
+
         #region Commands
         public ICommand RefreshCommand { get; private set; }
         #endregion 
@@ -50,7 +54,7 @@ namespace WheelofFortune.ViewModels
         {
             IsBusy = true;
             await Task.Delay(200);
-
+            Prize.Clear();
             await LoadPrizes();
             IsBusy = false;
 

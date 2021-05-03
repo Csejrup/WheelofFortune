@@ -10,15 +10,18 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
             <Label Text="Your Prize History" 
                    TextColor="White"
-                   FontFamily="SoulMaze"
-                   FontAttributes="Bold"
-                   FontSize="25" 
+                   FontFamily="Poppins"
+                   FontSize="24" 
                    Grid.Row="0" 
-                   HorizontalTextAlignment="Center"
+                   
                    />
+            <Image Source="Bronze.png" Scale="0.5" AnchorX="0.6" AnchorY="0.25"></Image>
+            <Image Source="Silver.png" Scale="0.5" AnchorX="0.75" AnchorY="0.25" ></Image>
+            <Image Source="Gold.png" Scale="0.5" AnchorX="0.9" AnchorY="0.25"></Image>
             <CollectionView ItemsSource="{Binding Prize, Mode=TwoWay}" Grid.Row="1" Margin="5">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
@@ -40,14 +43,36 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0"
                                    Grid.Row="0"
-                               Text="{Binding Points}" TextColor="White" FontSize="17"/>
+                               Text="{Binding Points, StringFormat='+  {0}'}" 
+                                   TextColor="White" 
+                                   FontSize="17"
+                                   FontFamily="SoulMaze"
+                                   FontAttributes="Bold"/>
                             <Label Grid.Column="1" 
                                    Grid.Row="0"
-                               Text="{Binding Date}" TextColor="White" FontSize="17"/>
+                                   Text="{Binding Date}" 
+                                   TextColor="White" 
+                                   FontSize="17"/>
+                            <!-- Row Separator -->
+                            <BoxView HeightRequest="1"
+                                    BackgroundColor="#4E546A"
+                                    Grid.ColumnSpan="3"
+                                    Grid.Row="1"
+                                    VerticalOptions="End"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Button Command="{Binding RefreshCommand}" 
+                    Text="Refresh"
+                    FontFamily="SoulMaze"
+                    FontAttributes="Bold"
+                    CornerRadius="20" 
+                    Grid.Row="2" 
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    WidthRequest="500"
+                    BackgroundColor="#484F75"/>
         </Grid>
         
     </ContentPage.Content>

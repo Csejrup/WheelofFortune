@@ -32,13 +32,14 @@
             <Label Text="You won" 
                    TextColor="White" 
                    FontSize="20" 
-                   FontAttributes="Italic" 
+                   
                    HorizontalTextAlignment="Center"
                    FontFamily="SoulMaze"/>
-            <Label Text="{Binding Points}" 
+            <Label Text="{Binding Points, StringFormat='+{0}'}" 
                    TextColor="White" 
                    Grid.Row="1" 
-                   FontSize="25" 
+                   FontSize="35"
+                   FontFamily="SoulMaze"
                    FontAttributes="Bold" 
                    HorizontalTextAlignment="Center"/>
             <Button Command="{Binding AddPointsCommand}" 
@@ -47,6 +48,7 @@
                     BackgroundColor="#27BD0F" 
                     FontSize="20"
                     FontFamily="'SoulMaze"
+                    FontAttributes="Bold"
                     CornerRadius="10"
                Grid.Row="2"/>
         </Grid>
