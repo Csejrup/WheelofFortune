@@ -6,6 +6,12 @@ About the Application
 This is an phone application for Android - with future possibilities to be deployed on iOS as the application is coded to be multiplatform compatible. 
 The application is a Wheel of Fortune where the User can spin the wheel to recieve points that can be used as discount at a specific webshop. 
 
+----------------------------------------
+To Run the Application
+----------------------------------------
+To be able to test and run the application you must use an android Emulator, example a Pixel 2 Pie 9.0 - API 28 (Android 9.0 - API 28), 
+or connect your own Android to Visual Studio. 
+
 -----------------------------------------
 Database
 -----------------------------------------
