@@ -32,6 +32,12 @@ From the XP perspective a focus on refactoring and fast deployment was the focus
 What could have been included would have been a test focused approach (Think XP) to test the code before deployment inform of Unit Testing and Acceptance Testing to ensure software quality for example. 
 
 ----------------------------------
+Link to Documentation (Report)
+----------------------------------
+
+(https://docs.google.com/document/d/18tU1W9ROD--ZrSM-N7SD8Ortk4kMmCiPd9nDaHYnbA8/edit?usp=sharing "Link to Google Docs")
+
+----------------------------------
 Technical Specifications
 ----------------------------------
 Environment: Microsoft Visual Studio Enterprise 2019 (v 16.8.4)
