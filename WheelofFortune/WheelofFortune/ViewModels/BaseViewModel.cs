@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using WheelofFortune.Models;
-using Xamarin.Forms;
 
 namespace WheelofFortune.ViewModels
 {
@@ -19,7 +16,6 @@ namespace WheelofFortune.ViewModels
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
         }
-
         string title = string.Empty;
         public string Title
         {

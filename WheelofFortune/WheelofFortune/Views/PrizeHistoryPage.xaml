@@ -12,7 +12,9 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Text="Your Prize History" 
-                   TextColor="White" 
+                   TextColor="White"
+                   FontFamily="SoulMaze"
+                   FontAttributes="Bold"
                    FontSize="25" 
                    Grid.Row="0" 
                    HorizontalTextAlignment="Center"

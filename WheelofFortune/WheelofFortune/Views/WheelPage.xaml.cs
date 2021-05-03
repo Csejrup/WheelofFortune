@@ -98,7 +98,7 @@ namespace WheelofFortune.Views
             var y = info.Height / 2;
 
             canvas.Clear();
-
+            // Places the Wheel in the Center of the Screen
             SKPoint center = new SKPoint(info.Width / 2, info.Height / 2);
             float radius = Math.Min(info.Width / 2, info.Height / 2) - 2 * WheelConstants.ExplodeOffset;
             SKRect rect = new SKRect(center.X - radius, center.Y - radius,
@@ -176,7 +176,7 @@ namespace WheelofFortune.Views
             {
                 drawMarkCircleInner.Style = SKPaintStyle.StrokeAndFill;
                 drawMarkCircleOuter.Style = SKPaintStyle.StrokeAndFill;
-                drawMarkTriangle.Color = Color.FromHex("#ffffff").ToSKColor();
+                drawMarkCircleOuter.Color = Color.FromHex("#ffffff").ToSKColor();
 
                 List<SKColor> colors = new List<SKColor>();
 
@@ -185,7 +185,8 @@ namespace WheelofFortune.Views
                     colors.Add(Color.FromHex(col).ToSKColor());
                 }
                 //draw outer circle
-                canvas.DrawCircle(args.Info.Width / 2, args.Info.Height / 2, 60, drawMarkCircleOuter); //outer
+                canvas.DrawCircle(args.Info.Width / 2, args.Info.Height / 2, 50, drawMarkCircleOuter); //outer
+                
                 //draw triangle
                 drawMarkTriangle.Style = SKPaintStyle.StrokeAndFill;
                 drawMarkTriangle.Color = Color.FromHex("#ffffff").ToSKColor();
@@ -198,8 +199,8 @@ namespace WheelofFortune.Views
                 canvas.DrawPath(markTriangle, drawMarkTriangle);
                 //draw inner circle
                 SKPoint circle_center = new SKPoint(info.Rect.MidX, info.Rect.MidY);
-                drawMarkCircleInner.Shader = SKShader.CreateSweepGradient(circle_center, colors.ToArray());
-          
+                
+                drawMarkCircleInner.Color = Color.FromHex("#ffffff").ToSKColor();
                 canvas.DrawCircle(args.Info.Width / 2, args.Info.Height / 2, 50, drawMarkCircleInner); //inner   
             }
             #endregion

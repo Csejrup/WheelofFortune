@@ -34,7 +34,7 @@ namespace WheelofFortune.ViewModels
         {
             try
             {
-                var prizes = await PrizeService.GetPrizes();
+                var prizes = await PrizeService.GetPrizes().ConfigureAwait(false);
                 Prize.AddRange(prizes);
             }
             catch (Exception ex)

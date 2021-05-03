@@ -33,7 +33,8 @@
                    TextColor="White" 
                    FontSize="20" 
                    FontAttributes="Italic" 
-                   HorizontalTextAlignment="Center"/>
+                   HorizontalTextAlignment="Center"
+                   FontFamily="SoulMaze"/>
             <Label Text="{Binding Points}" 
                    TextColor="White" 
                    Grid.Row="1" 
@@ -44,7 +45,8 @@
                     Text="CLAIM" 
                     TextColor="White" 
                     BackgroundColor="#27BD0F" 
-                    FontSize="20" 
+                    FontSize="20"
+                    FontFamily="'SoulMaze"
                     CornerRadius="10"
                Grid.Row="2"/>
         </Grid>

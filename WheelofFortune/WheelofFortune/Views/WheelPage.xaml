@@ -8,20 +8,40 @@
     <ContentPage.Content>
         <Grid BackgroundColor="#292F50">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="350"/>
+                <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Label Text="TRY YOUR LUCK" TextColor="White"  Grid.Column="1" Grid.Row="2" FontSize="Title"/>
-            </Grid>
-            <skia:SKCanvasView x:Name="skiaView" PaintSurface="CanvasSurfacePaint" Grid.Row="1" BackgroundColor="Transparent"/>
-            <Button Clicked="btn_Click_Spinwheel"  Text="Spin" FontSize="Medium" BackgroundColor="#484F75" Padding="30,10" Grid.Row="2" HeightRequest="75" />
+            <Label
+                   Grid.Row="0"
+                   TextColor="White"  
+                   Text="TRY &#10; YOUR LUCK"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   FontFamily="SoulMaze"
+                   HorizontalTextAlignment="Center">
 
+            </Label>
+            <skia:SKCanvasView 
+                x:Name="skiaView" 
+                PaintSurface="CanvasSurfacePaint" 
+                Grid.Row="1" 
+                BackgroundColor="Transparent"/>
+            <Button 
+                Clicked="btn_Click_Spinwheel"  
+                Text="Spin" 
+                TextColor="#101730"
+                FontSize="15"
+                FontAttributes="Bold"
+                FontFamily="SoulMaze"
+                BackgroundColor="Transparent" 
+                Padding="30,10" 
+                Grid.Row="1" 
+                HeightRequest="75" 
+                CornerRadius="20" 
+                WidthRequest="250" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

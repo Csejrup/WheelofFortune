@@ -1,8 +1,5 @@
 ﻿using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using WheelofFortune.Helpers;
 
 namespace WheelofFortune.Models

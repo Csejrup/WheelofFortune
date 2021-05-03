@@ -37,15 +37,12 @@ namespace WheelofFortune.ViewModels
         public ICommand AddPointsCommand { get; private set; }
 
         #endregion
-        //private PointsDataAccess _pointsDataAccess;
         public PopupTaskViewModel(string number)
         {
-           // this._pointsDataAccess = new PointsDataAccess();
             this.points = Int32.Parse(number);
             AddPointsCommand = new Command(async () => await AddPrizePoints());
             
         }
-
         /// <summary>
         /// Async Method for Claíming the points 
         /// and insert it into SQLite Database
@@ -55,7 +52,8 @@ namespace WheelofFortune.ViewModels
         {
             try
             {
-                await PrizeService.AddPrize(points, Datetime);
+                datetime = DateTime.Now;
+                await PrizeService.AddPrize(points, datetime).ConfigureAwait(false);
                 
             }
             catch (Exception ex)
