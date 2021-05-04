@@ -47,8 +47,18 @@ Link to Documentation (Report)
 [Link to Google Docs](https://docs.google.com/document/d/18tU1W9ROD--ZrSM-N7SD8Ortk4kMmCiPd9nDaHYnbA8/edit?usp=sharing)
 
 ----------------------------------
+User Guide
+----------------------------------
+
+When you run the Application the first page (view) you will see is the Wheel of Fortune. If you have already spun the Wheel, you can click the "Prize History" Button in the bottom right corner on the tab bar to see what you previously have won. 
+When you spin the wheel the wheel will spin for X amount of seconds before slowing down and eventually stopping. When stopped a Popup window will appear showing you how many points you have won and thereby you click the "CLAIM" Button and the points have been claimed. When claimed the Points will appear in the "Prize History" page, however to make it fully appear you must click the "Refresh" Button on the bottom of the page, and the list will be refreshed, and you will be able to see what you just won. 
+
+----------------------------------
 Technical Specifications
 ----------------------------------
+
+The Application uses the Xamarin(Forms) Framework from Visual Studio
+
 Environment: Microsoft Visual Studio Enterprise 2019 (v 16.8.4)
 
 Microsoft .NET Framework (v 4.8.04084)
