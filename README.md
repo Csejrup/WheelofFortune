@@ -57,6 +57,23 @@ When you spin the wheel the wheel will spin for X amount of seconds before slowi
 Technical Specifications
 ----------------------------------
 
+As said the application uses Xamarin Framework. If you haven't installed Xamarin on Visual Studio. You must follow this guide to do so:
+
+[Guide to Install/Add Xamarin to VS Studio](https://docs.microsoft.com/en-us/xamarin/get-started/installation/windows)
+
+The application uses the Android 11 SDK. Thereby you must download and install this SDK. Follow this guide:
+
+Click Tools > SDK Manager.
+
+In the SDK Platforms tab, select Android 11.
+
+In the SDK Tools tab, select Android SDK Build-Tools 30 (or higher).
+
+Click OK to begin install.
+
+[To see all SDKs on the List](https://docs.microsoft.com/en-us/answers/questions/191019/missing-android-11-in-sdk-manager.html)
+
+
 The Application uses the Xamarin(Forms) Framework from Visual Studio
 
 Environment: Microsoft Visual Studio Enterprise 2019 (v 16.8.4)
