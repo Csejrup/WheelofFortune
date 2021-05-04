@@ -73,7 +73,7 @@ Click OK to begin install.
 
 [To see all SDKs on the List](https://docs.microsoft.com/en-us/answers/questions/191019/missing-android-11-in-sdk-manager.html)
 
-
+--------------------------------------------------------------------
 The Application uses the Xamarin(Forms) Framework from Visual Studio
 
 Environment: Microsoft Visual Studio Enterprise 2019 (v 16.8.4)
